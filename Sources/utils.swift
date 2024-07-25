@@ -53,3 +53,30 @@ func extractComment(line: String, delim: String) -> String {
     let start = line.index(line.startIndex, offsetBy: off)
     return String(line[start...])
 }
+
+func checkSecondToken(line: String, delim: String) -> String {
+    let delimEndPos = delim.count
+    let startIdx = line.index(line.startIndex, offsetBy: delimEndPos)
+    let endIdx = line.index(line.startIndex, offsetBy: delimEndPos+5)
+    let checkStr = line[startIdx...endIdx]
+    var result = ""
+    if checkStr.contains("todo") {
+        result = "todo"
+    }
+    else if checkStr.contains("?") {
+        result = "?"
+    }
+    else if checkStr.contains("!") {
+        result = "!"
+    }
+    else if checkStr.contains("*") {
+        result = "*"
+    }
+    else if checkStr.contains("//") {
+        result = "//"
+    }
+    else {
+        result = "NONE"
+    }
+    return result
+}

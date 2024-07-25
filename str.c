@@ -151,4 +151,4 @@ string* strArrJoin(stringArray* arr, char* delim)
     return result;
 }
 
-//todo: Make extra utilities
+// todo: Make extra utilities
