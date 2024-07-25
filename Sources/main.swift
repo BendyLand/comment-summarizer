@@ -8,21 +8,21 @@ func main() {
     let file = readFileToString(filename: path)
     let lines = file.components(separatedBy: "\n")
     let delim = determineCommentStyle(lang: lang)
-    let comments: [String] = extractCommentLines(lines: lines, lang: lang)
+    let comments: [String] = extractCommentLines(lines, lang: lang)
+    let symbols = ["?", "!", "*","todo"]
+    var actionComments: [String] = []
     for comment in comments {
         var temp = comment.trimmingCharacters(in: .whitespaces)
         if !temp.starts(with: delim.rawValue) {
-            temp = extractComment(line: temp, delim: delim.rawValue)
+            temp = extractComment(temp, delim: delim.rawValue)
         }
-        let _ = checkSecondToken(line: temp, delim: delim.rawValue)
-        let _ = """
-        //todo: write functionality for each symbol
-        E.g.
-        Exclamation lines may get debug info.
-        Todo lines may appear first in the console.
-        Etc.
-        """
+        let secondTokenStr = checkSecondToken(temp, delim: delim.rawValue)
+        if containsAny(str: secondTokenStr, options: symbols) {
+            actionComments.append(temp)
+        }
     }
+    actionComments.sort()
+    handleTokens(comments: actionComments)
 }
 
 main()

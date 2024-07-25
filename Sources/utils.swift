@@ -37,7 +37,7 @@ func indexOf(_ needle: String, in haystack: String) -> Int {
     return -1
 }
 
-func extractCommentLines(lines: [String], lang: Language) -> [String] {
+func extractCommentLines(_ lines: [String], lang: Language) -> [String] {
     let style = determineCommentStyle(lang: lang)
     var result: [String] = []
     for line in lines {
@@ -48,13 +48,13 @@ func extractCommentLines(lines: [String], lang: Language) -> [String] {
     return result
 }
 
-func extractComment(line: String, delim: String) -> String {
+func extractComment(_ line: String, delim: String) -> String {
     let off = indexOf(delim, in: line)
     let start = line.index(line.startIndex, offsetBy: off)
     return String(line[start...])
 }
 
-func checkSecondToken(line: String, delim: String) -> String {
+func checkSecondToken(_ line: String, delim: String) -> String {
     let delimEndPos = delim.count
     let startIdx = line.index(line.startIndex, offsetBy: delimEndPos)
     let endIdx = line.index(line.startIndex, offsetBy: delimEndPos+5)
@@ -79,4 +79,11 @@ func checkSecondToken(line: String, delim: String) -> String {
         result = "NONE"
     }
     return result
+}
+
+func containsAny(str: String, options: [String]) -> Bool {
+    for option in options {
+        if str.contains(option) { return true }
+    }
+    return false
 }
