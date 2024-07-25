@@ -14,7 +14,7 @@ def calculate_area(radius):
     area = math.pi * radius ** 2
     return area
 
-# ! Don't know wha this one does yet.
+# ! Don't know what this one does yet.
 # Define the main function
 def main():
     """
@@ -33,5 +33,4 @@ def main():
 # ? I have a guess for this one
 # Check if the script is being run directly
 if __name__ == '__main__':
-    # Call the main function
-    main()
+    main() # Call the main function
