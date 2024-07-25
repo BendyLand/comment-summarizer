@@ -1,6 +1,6 @@
-# Todo Checker
+# Comment Summarizer
 
-An informal tool to log "todo" comments in a given code file.
+An informal tool to log certain comments from a given code file.
 
 The idea for this tool stems from the concept of coloring your code comments based on a certain prefix. *Better Comments* in VSCode is a good example of an extension that does this.
 
