@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:todo-checker}",
+            "name": "Debug todo-checker",
+            "program": "${workspaceFolder:todo-checker}/.build/debug/todo-checker",
+            "preLaunchTask": "swift: Build Debug todo-checker"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:todo-checker}",
+            "name": "Release todo-checker",
+            "program": "${workspaceFolder:todo-checker}/.build/release/todo-checker",
+            "preLaunchTask": "swift: Build Release todo-checker"
+        }
+    ]
+}
