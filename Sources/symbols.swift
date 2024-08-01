@@ -30,33 +30,33 @@ func stringToToken(str: String) -> Token {
     return result
 }
 
-func handleTokens(comments: [String]) {
+func orderComments(comments: [String]) -> [String] {
+    var result: [String] = []
+    var strikes: [String] = []
+    var questions: [String] = []
+    var exclamations: [String] = []
+    var stars: [String] = []
+    var todos: [String] = []
     for comment in comments {
-        print("Comment:\n\(comment)")
+        if comment.starts(with: "//") {
+            strikes.append(comment)
+        }
+        else if comment.starts(with: "?") {
+            questions.append(comment)
+        }
+        else if comment.starts(with: "!") {
+            exclamations.append(comment)
+        }
+        else if comment.starts(with: "*") {
+            stars.append(comment)
+        }
+        else if comment.starts(with: "todo") {
+            todos.append(comment)
+        }
     }
+    result = exclamations + todos + questions + stars + strikes
+    return result
 }
-
-func handleToken(token: Token, comment: String) {
-    switch token {
-    case .question:
-        handleQuestion(comment)
-    case .exclamation:
-        handleExclamation(comment)
-    case .star:
-        handleStar(comment)
-    case .todo:
-        handleTodo(comment)
-    case .strikethrough:
-        break
-    case .none:
-        break
-    }
-}
-
-func handleQuestion(_ comment: String) {}
-func handleExclamation(_ comment: String) {}
-func handleStar(_ comment: String) {}
-func handleTodo(_ comment: String) {}
 
 func doNothing() {
     let _ = """

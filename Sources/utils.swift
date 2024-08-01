@@ -50,35 +50,8 @@ func extractCommentLines(_ lines: [String], lang: Language) -> [String] {
 
 func extractComment(_ line: String, delim: String) -> String {
     let off = indexOf(delim, in: line)
-    let start = line.index(line.startIndex, offsetBy: off)
-    return String(line[start...])
-}
-
-func checkSecondToken(_ line: String, delim: String) -> String {
-    let delimEndPos = delim.count
-    let startIdx = line.index(line.startIndex, offsetBy: delimEndPos)
-    let endIdx = line.index(line.startIndex, offsetBy: delimEndPos+5)
-    let checkStr = line[startIdx...endIdx]
-    var result = ""
-    if checkStr.contains("todo") {
-        result = "todo"
-    }
-    else if checkStr.contains("?") {
-        result = "?"
-    }
-    else if checkStr.contains("!") {
-        result = "!"
-    }
-    else if checkStr.contains("*") {
-        result = "*"
-    }
-    else if checkStr.contains("//") {
-        result = "//"
-    }
-    else {
-        result = "NONE"
-    }
-    return result
+    let start = line.index(line.startIndex, offsetBy: off+delim.count)
+    return String(line[start...].trimmingCharacters(in: .whitespaces))
 }
 
 func containsAny(str: String, options: [String]) -> Bool {
@@ -86,4 +59,12 @@ func containsAny(str: String, options: [String]) -> Bool {
         if str.contains(option) { return true }
     }
     return false
+}
+
+func startsWithAny(_ str: String, options: [String]) -> Bool {
+    var found = 0
+    for option in options {
+        if str.starts(with: option) { found += 1 }
+    }
+    return found > 0
 }

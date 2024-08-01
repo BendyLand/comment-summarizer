@@ -9,20 +9,20 @@ func main() {
     let lines = file.components(separatedBy: "\n")
     let delim = determineCommentStyle(lang: lang)
     let comments: [String] = extractCommentLines(lines, lang: lang)
-    let symbols = ["?", "!", "*","todo"]
+    let symbols = ["//", "?", "!", "*","todo"]
     var actionComments: [String] = []
     for comment in comments {
         var temp = comment.trimmingCharacters(in: .whitespaces)
-        if !temp.starts(with: delim.rawValue) {
-            temp = extractComment(temp, delim: delim.rawValue)
-        }
-        let secondTokenStr = checkSecondToken(temp, delim: delim.rawValue)
-        if containsAny(str: secondTokenStr, options: symbols) {
+        temp = extractComment(temp, delim: delim.rawValue)
+        if startsWithAny(temp, options: symbols) {
             actionComments.append(temp)
         }
     }
     actionComments.sort()
-    handleTokens(comments: actionComments)
+    let orderedComments = orderComments(comments: actionComments)
+    for comment in orderedComments {
+        print(comment)
+    }
 }
 
 main()
