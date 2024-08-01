@@ -12,15 +12,15 @@ enum CommentPattern: String {
 
 func detectLanguage(filename: String) -> Language {
     var result: Language
-    if filename.contains("cpp") || filename.contains("cc") { result = .cpp }
-    else if filename.contains("c") { result = .c }
-    else if filename.contains("go") { result = .go }
-    else if filename.contains("swift") { result = .swift }
-    else if filename.contains("rs") { result = .rust }
-    else if filename.contains("py") { result = .python }
-    else if filename.contains("rb") { result = .ruby }
-    else if filename.contains("lua") { result = .lua }
-    else if filename.contains("sh") { result = .shell }
+    if filename.contains(".cpp") || filename.contains("cc") || filename.contains("hpp") { result = .cpp }
+    else if filename.contains(".c") || filename.contains(".h") { result = .c }
+    else if filename.contains(".go") { result = .go }
+    else if filename.contains(".swift") { result = .swift }
+    else if filename.contains(".rs") { result = .rust }
+    else if filename.contains(".py") { result = .python }
+    else if filename.contains(".rb") { result = .ruby }
+    else if filename.contains(".lua") { result = .lua }
+    else if filename.contains(".sh") { result = .shell }
     else { result = .unknown }
     return result
 }
