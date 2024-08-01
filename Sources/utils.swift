@@ -14,7 +14,7 @@ func readFileToString(filename: String) -> String {
     }
 }
 
-func indexOf(_ needle: String, in haystack: String) -> Int {
+func indexOf(pattern needle: String, in haystack: String) -> Int {
     let startChar = needle[needle.startIndex]
     Outer: for i in haystack.indices {
         if haystack[i] == startChar {
@@ -49,7 +49,7 @@ func extractCommentLines(_ lines: [String], lang: Language) -> [String] {
 }
 
 func extractComment(_ line: String, delim: String) -> String {
-    let off = indexOf(delim, in: line)
+    let off = indexOf(pattern: delim, in: line)
     let start = line.index(line.startIndex, offsetBy: off+delim.count)
     return String(line[start...].trimmingCharacters(in: .whitespaces))
 }

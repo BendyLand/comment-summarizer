@@ -9,7 +9,7 @@ func main() {
     let lines = file.components(separatedBy: "\n")
     let delim = determineCommentStyle(lang: lang)
     let comments: [String] = extractCommentLines(lines, lang: lang)
-    let symbols = ["//", "?", "!", "*","todo"]
+    let symbols = ["//", "?", "!", "*", "todo"]
     var actionComments: [String] = []
     for comment in comments {
         var temp = comment.trimmingCharacters(in: .whitespaces)
